@@ -21,6 +21,10 @@ class Navigation:
 
     def cd(self, *args):
         path = args[0]
+
+        if path.startswith("~"):
+            path = path.replace("~", os.environ.get("HOME"))
+
         if os.path.isabs(path):
             if os.path.isdir(path):
                 self.set_current_dir(path)
