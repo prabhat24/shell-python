@@ -11,9 +11,7 @@ def main():
         if not user_input:
             continue
         command, subcommand = user_input.split(" ", 1)
-        args = [subcommand]
-        if "'" in subcommand:
-            args = shlex.split(subcommand)
+        args = shlex.split(subcommand)
 
         if is_valid_builtin_command(command):
             valid_commands[command](*args)
