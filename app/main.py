@@ -4,8 +4,14 @@ def do_exit(*args):
     args = [ int(i) for i in args ]
     exit(args[0])
 
+def do_echo(*args):
+    text = " ".join(args)
+    print(text)
+    
+
 valid_commands = {
-    "exit": do_exit
+    "exit": do_exit,
+    "echo": do_echo
 }
 
 def main():
@@ -20,11 +26,11 @@ def main():
         args = user_input.strip().split()[1:]
         if is_valid_command(command):
             valid_commands[command](*args)
-
-        print(f"{command}: command not found")
+        else:
+            print(f"{command}: command not found")
 
 def is_valid_command(command):
-    if command in ["exit"]:
+    if command in ["exit", "echo"]:
         return True
 
 
