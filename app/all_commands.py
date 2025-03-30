@@ -1,8 +1,9 @@
 import os
 
-def is_valid_command(command):
+def is_valid_builtin_command(command):
     if command in valid_commands.keys():
         return True
+    return False
 
 def do_exit(*args):
     args = [ int(i) for i in args ]
@@ -14,7 +15,7 @@ def do_echo(*args):
     
 def type_command(*args):
     arg_command = args[0]
-    if is_valid_command(arg_command):
+    if is_valid_builtin_command(arg_command):
         print(f"{arg_command} is a shell builtin")
         return
     executable_path = search_as_executable(arg_command)
