@@ -1,5 +1,6 @@
 import os
 import sys
+import subprocess
 from collections import deque
 
 class Navigation:
@@ -55,7 +56,6 @@ class Navigation:
 
     def set_current_dir(self, new_path):
         self.current_directory = self.clear_ending_path_seperator(new_path)
-
 
     @staticmethod
     def clear_ending_path_seperator(path):

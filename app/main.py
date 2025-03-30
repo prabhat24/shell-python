@@ -1,6 +1,7 @@
 import sys
 from app.all_commands import *
 import subprocess
+import shlex
 
 def main():
     # Wait for user input
@@ -9,8 +10,11 @@ def main():
         user_input = input().strip()
         if not user_input:
             continue
-        command = user_input.split()[0]
-        args = user_input.split()[1:]
+        command, subcommand = user_input.split(" ", 1)
+        args = [subcommand]
+        if "'" in subcommand:
+            args = shlex.split(subcommand)
+
         if is_valid_builtin_command(command):
             valid_commands[command](*args)
             continue
@@ -18,7 +22,7 @@ def main():
         if executable_path:
             process = subprocess.Popen([command, *args], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             stdout, stderr = process.communicate()
-            sys.stdout.write(stdout)
+            print(stdout)
         else:
             print(f"{command}: command not found")
 
