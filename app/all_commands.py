@@ -13,6 +13,10 @@ def do_echo(*args):
     text = " ".join(args)
     print(text)
     
+def pwd_command(*args):
+    current_directory = os.getcwd()
+    print(current_directory)
+
 def type_command(*args):
     arg_command = args[0]
     if is_valid_builtin_command(arg_command):
@@ -40,7 +44,8 @@ def search_as_executable(command):
 valid_commands = {
     "exit": do_exit,
     "echo": do_echo,
-    "type": type_command
+    "type": type_command,
+    "pwd": pwd_command
 }
 
 
