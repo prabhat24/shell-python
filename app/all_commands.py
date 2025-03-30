@@ -1,4 +1,5 @@
 import os
+import sys
 from app.navigation_commands import Navigation
 
 
@@ -44,6 +45,7 @@ def completer(text, state):
     options = [cmd for cmd in valid_commands.keys() if cmd.startswith(text)]
     if state < len(options):
         return options[state] + " "
+    sys.stdout.write("\a")
     return None
 
            
