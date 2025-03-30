@@ -11,12 +11,17 @@ def main():
         if not user_input:
             continue
 
-        command_subcommand = user_input.split(" ", 1)
-        command = command_subcommand[0]
+        # command_subcommand = user_input.split(" ", 1)
+        # command = command_subcommand[0]
+        # args = []
+        # if len(command_subcommand) >=2:
+        #     subcommand = command_subcommand[1]
+        #     args = shlex.split(subcommand)
+        command_with_args = shlex.split(user_input)
+        command = command_with_args[0]
         args = []
-        if len(command_subcommand) >=2:
-            subcommand = command_subcommand[1]
-            args = shlex.split(subcommand)
+        if len(command_with_args) >=2:
+            args = command_with_args[1:]
 
         if is_valid_builtin_command(command):
             valid_commands[command](*args)
