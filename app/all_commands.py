@@ -38,7 +38,15 @@ def search_as_executable(command):
                         and os.access(os.path.join(path, file), os.X_OK):
                     return os.path.join(path, file)
     return ""
-                
+
+def completer(text, state):
+    """Autocomplete function for built-in commands."""
+    options = [cmd for cmd in valid_commands.keys() if cmd.startswith(text)]
+    if state < len(options):
+        return options[state]
+    return None
+
+           
 valid_commands = {
     "exit": do_exit,
     "echo": do_echo,

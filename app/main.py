@@ -2,6 +2,10 @@ import sys
 from app.all_commands import *
 import subprocess
 import shlex
+import readline
+
+readline.set_completer(completer)
+readline.parse_and_bind("tab: complete")
 
 def main():
     # Wait for user input
@@ -11,12 +15,6 @@ def main():
         if not user_input:
             continue
 
-        # command_subcommand = user_input.split(" ", 1)
-        # command = command_subcommand[0]
-        # args = []
-        # if len(command_subcommand) >=2:
-        #     subcommand = command_subcommand[1]
-        #     args = shlex.split(subcommand)
         command_with_args = shlex.split(user_input)
         command = command_with_args[0]
         args = []
