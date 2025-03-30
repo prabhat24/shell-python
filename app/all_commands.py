@@ -1,4 +1,6 @@
 import os
+from app.navigation_commands import Navigation
+
 
 def is_valid_builtin_command(command):
     if command in valid_commands.keys():
@@ -12,10 +14,6 @@ def do_exit(*args):
 def do_echo(*args):
     text = " ".join(args)
     print(text)
-    
-def pwd_command(*args):
-    current_directory = os.getcwd()
-    print(current_directory)
 
 def type_command(*args):
     arg_command = args[0]
@@ -45,7 +43,8 @@ valid_commands = {
     "exit": do_exit,
     "echo": do_echo,
     "type": type_command,
-    "pwd": pwd_command
+    "pwd": Navigation.get_instance().pwd,
+    "cd": Navigation.get_instance().cd
 }
 
 
