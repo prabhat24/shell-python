@@ -20,7 +20,7 @@ def main():
         if executable_path:
             process = subprocess.Popen([command, *args], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             stdout, stderr = process.communicate()
-            print(stdout)
+            sys.stdout.write(stdout)
         else:
             print(f"{command}: command not found")
 
