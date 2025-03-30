@@ -43,9 +43,24 @@ def search_as_executable(command):
 def completer(text, state):
     """Autocomplete function for built-in commands."""
     options = [cmd for cmd in valid_commands.keys() if cmd.startswith(text)]
+
+    
+    path_list = os.environ.get("PATH").split(":")
+    count = 0
+    for path in path_list:
+        if os.path.isdir(path):
+            path_files = os.listdir(path)
+            for file in path_files:
+                if os.path.isfile(os.path.join(path, file)) \
+                        and os.access(os.path.join(path, file), os.X_OK) \
+                        and file.startswith(text):
+                    options.append(file)
+                    count += 1
+                    if count >= 2:
+                        break 
     if state < len(options):
         return options[state] + " "
-    sys.stdout.write("\a")
+    # print("\a", end= "   ")
     return None
 
            
