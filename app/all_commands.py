@@ -43,7 +43,7 @@ def completer(text, state):
     """Autocomplete function for built-in commands."""
     options = [cmd for cmd in valid_commands.keys() if cmd.startswith(text)]
     if state < len(options):
-        return options[state]
+        return options[state] + " "
     return None
 
            
