@@ -63,7 +63,13 @@ def completer(text, state):
     # print("\a", end= "   ")
     return None
 
-           
+def display_matches(substitution, matches, longest_match_length):
+    print()
+    if matches:
+        print("  ".join(matches))
+    print("$ " + substitution, end="")
+
+
 valid_commands = {
     "exit": do_exit,
     "echo": do_echo,

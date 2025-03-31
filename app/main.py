@@ -6,12 +6,14 @@ import readline
 
 readline.set_completer(completer)
 readline.parse_and_bind("tab: complete")
+readline.set_completion_display_matches_hook(display_matches)
+readline.parse_and_bind("set bell-style audible")  # type: ignore
+readline.set_auto_history(True)  # type: ignore
 
 def main():
     # Wait for user input
     while True:
-        sys.stdout.write("$ ")
-        user_input = input().strip()
+        user_input = input("$ ").strip()
         if not user_input:
             continue
 
