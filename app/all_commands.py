@@ -66,7 +66,7 @@ def completer(text, state):
 def display_matches(substitution, matches, longest_match_length):
     print()
     if matches:
-        print("  ".join(matches))
+        print(" ".join(matches))
     print("$ " + substitution, end="")
 
 
